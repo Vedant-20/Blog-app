@@ -3,7 +3,7 @@ import {login as authLogin} from '../store/authSlice'
 import {Button, Input, Logo} from './index'
 import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 const Login = () => {
@@ -61,7 +61,7 @@ const Login = () => {
                         })}
                     />
 
-                    <Button type='submit' className='w-full'>Sign In</Button>
+                    <Button type='submit' className='w-full'> SignIn </Button>
                 </div>
             </form>
         </div>

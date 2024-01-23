@@ -4,6 +4,7 @@ import {Button, Input , Select} from '../index'
 import appwriteService from '../../appwrite/configs'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import {RTE} from '../index'
 
 function PostForm({post}) {
     const {register, handleSubmit,watch,setValue,control,getValues}=useForm({
@@ -16,7 +17,7 @@ function PostForm({post}) {
     })
 
     const navigate=useNavigate()
-    const userData=useSelector(state=>state.user.userData)
+    const userData=useSelector((state)=>state.auth.userData)
 
     const submit=async(data)=>{
         if(post){
@@ -55,7 +56,7 @@ function PostForm({post}) {
 
     const slugTransform=useCallback((value)=>{
         if(value && typeof value ==='string'){
-            return value.trim().toLowerCase().replace(/^[a-zA-z\d\s]+/g,'-').replace(/\s/g,'-')
+            return value.trim().toLowerCase().replace(/[^a-zA-z\d\s]+/g,'-').replace(/\s/g,'-')
         }
         return ''
     },[])
