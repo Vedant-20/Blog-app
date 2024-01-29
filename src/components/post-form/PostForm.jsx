@@ -12,7 +12,7 @@ function PostForm({post}) {
             title:post?.title || '',
             slug:post?.slug || '',
             content:post?.content || '',
-            status:post?.status || 'active',
+            status:post?.status || 'active', 
         }
     })
 
@@ -49,6 +49,16 @@ function PostForm({post}) {
             })
             if(dbPost){
                 navigate(`/post/${dbPost.$id}`)
+            }
+        } else {
+            data.featuredImage = null; // or set to any appropriate default value
+            const dbPost = await appwriteService.createPost({
+                ...data,
+                userId: userData.$id,
+            });
+
+            if (dbPost) {
+                navigate(`/post/${dbPost.$id}`);
             }
         }
     }
